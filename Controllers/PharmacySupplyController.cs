@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PharmacyMedicineSupplyService.Models;
@@ -10,6 +11,7 @@ using PharmacyMedicineSupplyService.Repository;
 
 namespace PharmacyMedicineSupplyService.Controllers
 {
+    [Authorize]
     [Route("[controller]")]
     [ApiController]
     public class PharmacySupplyController : ControllerBase
