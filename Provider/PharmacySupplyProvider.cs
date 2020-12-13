@@ -11,9 +11,9 @@ namespace PharmacyMedicineSupplyService.Provider
 {
     public class PharmacySupplyProvider: IPharmacySupply
     {
-        ISupply supplyRepo;
-        List<PharmacyDTO> pharmacies;
-        List<PharmacyMedicineSupply> pharmacySupply=new List<PharmacyMedicineSupply>();
+        private readonly ISupply supplyRepo;
+        private List<PharmacyDTO> pharmacies;
+        private readonly List<PharmacyMedicineSupply> pharmacySupply=new List<PharmacyMedicineSupply>();
         static readonly log4net.ILog _log4net = log4net.LogManager.GetLogger(typeof(PharmacySupplyProvider));
 
         public PharmacySupplyProvider(ISupply repo)
@@ -49,8 +49,10 @@ namespace PharmacyMedicineSupplyService.Provider
         }
         public async Task<int> GetStock(string medicineName)
         {
-            var client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:44394");
+            var client = new HttpClient
+            {
+                BaseAddress = new Uri("https://localhost:44394")
+            };
             var response = await client.GetAsync("MedicineStockInformation");
             if (!response.IsSuccessStatusCode)
             {

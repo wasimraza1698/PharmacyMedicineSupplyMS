@@ -14,7 +14,7 @@ namespace PharmacyMedicineSupplyService.Controllers
     [ApiController]
     public class PharmacySupplyController : ControllerBase
     {
-        IPharmacySupply _provider;
+        private readonly IPharmacySupply _provider;
         static readonly log4net.ILog _log4net = log4net.LogManager.GetLogger(typeof(PharmacySupplyController));
         public PharmacySupplyController(IPharmacySupply provider)
         {
@@ -37,7 +37,7 @@ namespace PharmacyMedicineSupplyService.Controllers
             catch(Exception e)
             {
                 _log4net.Error("Excpetion:" + e.Message + " has occurred while trying to retrieve supply info.");
-                return NotFound("The following exception has occurred while processing your request."+e.Message+" Please try again");
+                return StatusCode(500);
             }
 
             
