@@ -16,9 +16,9 @@ namespace PharmacyMedicineSupplyService.Controllers
     [ApiController]
     public class PharmacySupplyController : ControllerBase
     {
-        private readonly IPharmacySupply _provider;
+        private readonly IPharmacySupplyProvider _provider;
         static readonly log4net.ILog _log4net = log4net.LogManager.GetLogger(typeof(PharmacySupplyController));
-        public PharmacySupplyController(IPharmacySupply provider)
+        public PharmacySupplyController(IPharmacySupplyProvider provider)
         {
             _provider = provider;
         }

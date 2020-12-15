@@ -9,7 +9,7 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace PharmacyMedicineSupplyService.Repository
 {
-    public class SupplyRepo : ISupply
+    public class SupplyRepo : ISupplyRepo
     {
         private readonly List<string> pharmacyNames = new List<string>() {"Appolo Pharmacy","Gupta Pharmacies","G.K Pharmacies" };
         private readonly List<PharmacyDTO> pharmacies = new List<PharmacyDTO>();

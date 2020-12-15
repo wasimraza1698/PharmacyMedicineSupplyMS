@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 
 namespace PharmacyMedicineSupplyService.Provider
 {
-    public class PharmacySupplyProvider: IPharmacySupply
+    public class PharmacySupplyProvider: IPharmacySupplyProvider
     {
-        private readonly ISupply supplyRepo;
+        private readonly ISupplyRepo supplyRepo;
         private List<PharmacyDTO> pharmacies;
         private readonly List<PharmacyMedicineSupply> pharmacySupply=new List<PharmacyMedicineSupply>();
         static readonly log4net.ILog _log4net = log4net.LogManager.GetLogger(typeof(PharmacySupplyProvider));
 
-        public PharmacySupplyProvider(ISupply repo)
+        public PharmacySupplyProvider(ISupplyRepo repo)
         {
             supplyRepo = repo;
         }

@@ -32,8 +32,8 @@ namespace PharmacyMedicineSupplyService
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddTransient<ISupply, SupplyRepo>();
-            services.AddTransient<IPharmacySupply, PharmacySupplyProvider>();
+            services.AddTransient<ISupplyRepo, SupplyRepo>();
+            services.AddTransient<IPharmacySupplyProvider, PharmacySupplyProvider>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1.0", new OpenApiInfo { Title = "Pharmacy Supply Service", Version = "1.0", Description = "Retrieve the details of pharmacies and their supply count based on demand." });
