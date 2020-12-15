@@ -26,19 +26,22 @@ namespace PharmacyMedicineSupplyService.Provider
             _log4net.Info("Pharmacies Data retieved");
             foreach (var m in medicines)
             {
-                int stockCount = await GetStock(m.MedicineName);
-                if (stockCount != -1)
+                if (m.Count > 0)
                 {
-                    if (stockCount < m.Count)
-                        m.Count = stockCount;
-                    int indSupply = (m.Count) / pharmacies.Count;
-                    foreach (var i in pharmacies)
+                    int stockCount = await GetStock(m.MedicineName);
+                    if (stockCount != -1)
                     {
-                        pharmacySupply.Add(new PharmacyMedicineSupply { MedicineName = m.MedicineName, PharmacyName = i.pharmacyName, SupplyCount = indSupply });
-                    }
-                    if (m.Count > indSupply * pharmacies.Count)
-                    {
-                        pharmacySupply[pharmacySupply.Count - 1].SupplyCount += (m.Count - indSupply * pharmacies.Count);
+                        if (stockCount < m.Count)
+                            m.Count = stockCount;
+                        int indSupply = (m.Count) / pharmacies.Count;
+                        foreach (var i in pharmacies)
+                        {
+                            pharmacySupply.Add(new PharmacyMedicineSupply { MedicineName = m.MedicineName, PharmacyName = i.pharmacyName, SupplyCount = indSupply });
+                        }
+                        if (m.Count > indSupply * pharmacies.Count)
+                        {
+                            pharmacySupply[pharmacySupply.Count - 1].SupplyCount += (m.Count - indSupply * pharmacies.Count);
+                        }
                     }
                 }
                 
